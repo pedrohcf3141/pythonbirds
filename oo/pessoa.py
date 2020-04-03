@@ -1,17 +1,21 @@
 class Pesoa:
-    def __init__(self,nome = None, idade = 33):
+    def __init__(self,*filhos,nome = None, idade = 33):
         self.idade = idade
         self.nome = nome
+        self.filhos = list(filhos)
 
     def cumprimentar(self):
         return f'Ola Mundo{id(self)}'
 
+
 if __name__ == '__main__':
-    p = Pesoa('Henrique')
-    print(Pesoa.cumprimentar(p))
-    print(id(p) )
-    print(p.cumprimentar())
-    print(p.nome)
-    p.nome = 'Pedro'
-    print(p.nome)
-    print(p.idade)
+    pedro = Pesoa(nome ='pedro')
+    henrique = Pesoa(pedro,nome ='Henrique')
+    print(Pesoa.cumprimentar(henrique))
+    print(id(henrique))
+    print(henrique.cumprimentar())
+    print(henrique.nome)
+    print(henrique.nome)
+    print(henrique.idade)
+    for filho in henrique.filhos:
+        print(filho.nome)
