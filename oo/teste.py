@@ -48,7 +48,7 @@ Exemplo:
     >>> direcao.valor
     'Norte'
     >>> carro = Carro()
-    >>> carro.calcular_velocidade()
+    >>> carro.calcular_velocidade
     0
     >>> carro.acelerar
     >>> carro.calcular_velocidade

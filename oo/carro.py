@@ -43,7 +43,6 @@ class Motor:
     def __str__(self):
         return str(self.velocidade)
 
-
 class Carro:
     def __init__(self):
         self.direcao = Direcao()
