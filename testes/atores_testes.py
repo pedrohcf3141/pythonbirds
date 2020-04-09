@@ -156,7 +156,7 @@ class ObstaculoTestes(TestCase):
 
 class PorcoTestes(TestCase):
     """
-    Esperado '@' como caracter de porco ativo e '+' como caracter de porco destruido
+    Esperado '@' como de porco ativo e '+' como caracter de porco destruido
     """
     def teste_status(self):
         porco = Porco()
