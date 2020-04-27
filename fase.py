@@ -76,7 +76,7 @@ class Fase():
         """
         if not self._possui_porcos_ativos():
             return VITORIA
-        elif not  self._possui_pasaros_ativos():
+        elif self._possui_passaros_ativos():
             return EM_ANDAMENTO
         else:
             return DERROTA
@@ -94,10 +94,8 @@ class Fase():
         """
         for passaro in self._passaros:
             if not passaro.foi_lancado():
-                passaro.lancar(angulo,tempo)
+                passaro.lancar(angulo, tempo)
                 break
-
-
 
     def calcular_pontos(self, tempo):
         """
@@ -126,10 +124,8 @@ class Fase():
                 return True
         return False
 
-    def _possui_pasaros_ativos(self):
+    def _possui_passaros_ativos(self):
         for passaro in self._passaros:
             if passaro.status == ATIVO:
                 return True
         return False
-
-

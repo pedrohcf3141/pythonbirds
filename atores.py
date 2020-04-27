@@ -52,13 +52,11 @@ class Ator():
         :param intervalo: Intervalo a ser considerado
         :return:
         """
-        if  self.status == ATIVO and outro_ator.status == ATIVO:
+        if self.status == ATIVO and outro_ator.status == ATIVO:
             deltax = abs(self.x - outro_ator.x)
             deltay = abs(self.y - outro_ator.y)
             if deltax <=intervalo and deltay <= intervalo:
                 self.status = outro_ator.status = DESTRUIDO
-
-
 class Obstaculo(Ator):
     _caracter_ativo = 'O'
     _caracter_destruido = ' '
@@ -106,8 +104,8 @@ class Passaro(Ator):
         o status dos Passaro deve ser alterado para destruido, bem como o seu caracter
 
         """
-        _caracter_ativo = ' '
-
+        if self.y <= 0:
+            self.status = DESTRUIDO
     def calcular_posicao(self, tempo):
         """
         Método que cálcula a posição do passaro de acordo com o tempo.
@@ -125,6 +123,7 @@ class Passaro(Ator):
         if self.foi_lancado():
             delta_t = tempo-self._tempo_de_lancamento
             self._calcular_posicao_vertical(delta_t)
+            self._calcular_posicao_horizontal(delta_t)
             return super().calcular_posicao(tempo)
 
     def lancar(self, angulo, tempo_de_lancamento):
@@ -145,6 +144,12 @@ class Passaro(Ator):
         y_atual += self.velocidade_escalar * delta_t * math.sin(angulo_radianos)
         y_atual -= (GRAVIDADE * (delta_t ** 2))/2
         self.y = y_atual
+
+    def _calcular_posicao_horizontal(self, delta_t):
+        x_atual=self._x_inicial
+        angulo_radianos = math.radians(self._angulo_de_lancamento)
+        x_atual +=self.velocidade_escalar  * delta_t * math.cos(angulo_radianos)
+        self.x = x_atual
 
 class PassaroAmarelo(Passaro):
     _caracter_ativo = 'A'
